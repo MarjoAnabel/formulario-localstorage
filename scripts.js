@@ -1,26 +1,27 @@
-const firstname = document.getElementById('firstname')
-const email = document.getElementById ('email')
-const mensage = document.getElementById ('message')
-
-
+const inputName = document.getElementById('userName')
+const email = document.getElementById ('userEmail')
+const mensage = document.getElementById ('userMensage')
+const userInfo = document.getElementById ('content')
 const sendButton = document.getElementById ('sendButton')
-sendButton.addEventListener ('click', onSubmit)
+
 
 function onSubmit(event) {
     event.preventDefault()
-    const firstname = firstname.value
-    const email = email.value
-    const mensage = mensage.value
-
-    localStorage.setItem('formulario', JSON.stringify({
-        name: firstname.value,
-        email: email.value,
-        mensage: mensage.value,
+    saveDataStorage ()
+    const userFromStorage = JSON.parse (localStorage.getItem ('userInfo'))
+    userInfo.innerHTML = `<p>Hola ${userFromStorage.userName} tu correo ${userFromStorage.userEmail} y el mensaje ${userFromStorage.userMensage}</p>`
+ }
+    function saveDataStorage() {
+    localStorage.setItem('userInfo', JSON.stringify({
+        userName: userName.value,
+        userEmail: userEmail.value,
+        userMensage: userMensage.value,
         
     }))
-    
+
 }
+sendButton.addEventListener ('click', onSubmit)
+
 
 // const remove = localStorage.clear
-// remove.addEventListener ('click', onSubmit)
-
+// remove.addEventListener ('click', onSubmit) 
